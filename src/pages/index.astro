@@ -1,0 +1,246 @@
+---
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+import { projects } from '../data/projects';
+import { research } from '../data/research';
+import { work } from '../data/work';
+---
+
+<Base title="Ethan Fang">
+  <section class="hero">
+    <div class="hero__inner">
+      <img
+        src="/calligraphy.png"
+        alt="方威 — the author's name in Chinese calligraphy"
+        class="chop"
+      />
+      <h1 class="name">Ethan Fang</h1>
+      <div class="bio">
+        <p>Based out of the Bay Area. I spend most of my time in math modeling, AI research, and engineering.</p>
+        <p>I graduated from Case Western Reserve University in May of 2026 with a BS/MS in computer science. During my time there, I pursued many interests such as: starting the quant finance club, growing club tennis, and doing lots and lots of research.</p>
+        <p>I enjoy building cool and useful things. This includes a startup I cofounded, <a href="https://vantura.ai" target="_blank" rel="noopener noreferrer">Vantura</a>, and a few sites such as iLiterate (see projects).</p>
+        <p>Currently, I am a quantitative analyst at KeyBank where I model expected loss for the bank's portfolio. I continue to stay involved in AI research on the side.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page container">
+    <header class="page__head">
+      <h2 class="page__title">Work</h2>
+    </header>
+
+    <ol class="entry-list">
+      {work.map((w) => {
+        const external = w.href && w.href.startsWith('http');
+        const Tag = w.href ? 'a' : 'div';
+        return (
+          <li class="entry">
+            <Tag
+              class="entry__link"
+              href={w.href}
+              target={external ? '_blank' : undefined}
+              rel={external ? 'noopener noreferrer' : undefined}
+            >
+              <Logo domain={w.domain} mark={w.mark} alt={w.org} />
+              <div class="entry__body">
+                <div class="entry__head">
+                  <h3 class="entry__title">
+                    {w.org}<span class="entry__sep"> · </span><span class="entry__sub">{w.role}</span>
+                  </h3>
+                  <div class="entry__aside">
+                    <span class="entry__meta">{w.period}</span>
+                    {w.href && <span class="entry__arrow" aria-hidden="true">↗</span>}
+                  </div>
+                </div>
+              </div>
+            </Tag>
+          </li>
+        );
+      })}
+    </ol>
+
+    <header class="page__head page__head--secondary">
+      <h2 class="page__title">Research</h2>
+    </header>
+
+    <ol class="entry-list">
+      {research.map((r) => {
+        const Tag = r.href ? 'a' : 'div';
+        return (
+          <li class="entry">
+            <Tag
+              class="entry__link entry__link--project"
+              href={r.href}
+              target={r.href ? '_blank' : undefined}
+              rel={r.href ? 'noopener noreferrer' : undefined}
+            >
+              <div class="entry__body">
+                <div class="entry__head">
+                  <h3 class="entry__title">{r.title}</h3>
+                  <div class="entry__aside">
+                    <span class="entry__meta">{r.year}</span>
+                    {r.href && <span class="entry__arrow" aria-hidden="true">↗</span>}
+                  </div>
+                </div>
+                <p class="entry__blurb">{r.blurb}</p>
+              </div>
+            </Tag>
+          </li>
+        );
+      })}
+    </ol>
+
+    <header class="page__head page__head--secondary">
+      <h2 class="page__title">Projects</h2>
+    </header>
+
+    <ol class="entry-list">
+      {projects.map((p) => {
+        const Tag = p.href ? 'a' : 'div';
+        return (
+          <li class="entry">
+            <Tag
+              class="entry__link entry__link--project"
+              href={p.href}
+              target={p.href ? '_blank' : undefined}
+              rel={p.href ? 'noopener noreferrer' : undefined}
+            >
+              <div class="entry__body">
+                <div class="entry__head">
+                  <h3 class="entry__title">{p.title}</h3>
+                  <div class="entry__aside">
+                    <span class="entry__meta">{p.year}</span>
+                    {p.href && <span class="entry__arrow" aria-hidden="true">↗</span>}
+                  </div>
+                </div>
+                <p class="entry__blurb">{p.blurb}</p>
+              </div>
+            </Tag>
+          </li>
+        );
+      })}
+    </ol>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding: 6rem 0 2rem;
+  }
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 1.25rem;
+    width: min(100% - 2.5rem, 640px);
+    margin-inline: auto;
+  }
+  .chop {
+    width: clamp(220px, 60%, 420px);
+    height: auto;
+    opacity: 0.95;
+    filter: drop-shadow(0 10px 30px color-mix(in srgb, var(--accent) 22%, transparent));
+    mix-blend-mode: multiply;
+  }
+  .name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-3);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0;
+  }
+  .bio {
+    margin-top: 0.5rem;
+    font-size: var(--step-0);
+    line-height: 1.55;
+    max-width: 56ch;
+    color: var(--ink);
+  }
+  .bio p { margin: 0 0 0.8em; }
+  .bio p:last-child { margin-bottom: 0; }
+
+  .page { padding: 4rem 0; font-size: 0.8rem; width: min(100% - 2.5rem, 640px); margin-inline: auto; }
+  .page__head { margin: 0 0 1.5rem; max-width: 60ch; }
+  .page__head--secondary { margin-top: 3rem; }
+  .page__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-1);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .entry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .entry { border-bottom: 1px solid var(--rule); }
+  .entry__link {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem 0;
+    background-image: none;
+    color: var(--ink);
+    transition: color 200ms ease;
+  }
+  .entry__link--project { align-items: flex-start; }
+  .entry__link--project { padding-left: 0; }
+  .entry__link:hover { color: var(--accent); }
+  .entry__link:hover .entry__arrow { transform: translate(3px, -3px); color: var(--accent); }
+
+  .entry__body { flex: 1; min-width: 0; }
+  .entry__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+  .entry__link--project .entry__head { margin-bottom: 0.2rem; }
+  .entry__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-0);
+    letter-spacing: -0.01em;
+    margin: 0;
+    line-height: 1.3;
+    min-width: 0;
+  }
+  .entry__sep { color: var(--muted); font-style: italic; }
+  .entry__sub { color: var(--muted); font-style: italic; }
+
+  .entry__aside {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    flex-shrink: 0;
+    color: var(--muted);
+  }
+  .entry__meta {
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .entry__arrow {
+    font-size: 0.9rem;
+    transition: transform 250ms ease, color 200ms ease;
+    display: inline-block;
+  }
+
+  .entry__blurb {
+    color: var(--muted);
+    margin: 0.2rem 0 0;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    max-width: 72ch;
+  }
+
+  @media (max-width: 560px) {
+    .entry__head { flex-wrap: wrap; gap: 0.3rem 1rem; }
+  }
+</style>
