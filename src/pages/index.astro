@@ -113,7 +113,10 @@ import { work } from '../data/work';
                     {p.href && <span class="entry__arrow" aria-hidden="true">↗</span>}
                   </div>
                 </div>
-                <p class="entry__blurb">{p.blurb}</p>
+                {p.blurbHtml
+                  ? <p class="entry__blurb" set:html={p.blurbHtml} />
+                  : <p class="entry__blurb">{p.blurb}</p>
+                }
               </div>
             </Tag>
           </li>

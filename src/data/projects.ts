@@ -1,12 +1,23 @@
 export interface Project {
   title: string;
   blurb: string;
+  blurbHtml?: string;
   tags: string[];
   href?: string;
   year: string;
 }
 
 export const projects: Project[] = [
+  {
+    title: 'Vantura',
+    year: '2025',
+    blurb:
+      'Get a head start on your mornings with a hyper-customized morning briefing. Receive a carousel on news, sports, and stocks you follow, with an audio podcast that you can listen to on the go. Backed by ElevenLabs, Founder University, and CWRU.',
+    blurbHtml:
+      'Get a head start on your mornings with a hyper-customized morning briefing. Receive a carousel on news, sports, and stocks you follow, with an audio podcast that you can listen to on the go. Backed by <a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">ElevenLabs</a>, <a href="https://founderuniversity.com" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">Founder University</a>, and CWRU.',
+    tags: ['AI', 'Startup'],
+    href: 'https://vantura.ai',
+  },
   {
     title: 'iLiterate',
     year: '2026',
