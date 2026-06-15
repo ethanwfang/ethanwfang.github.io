@@ -96,25 +96,36 @@ import { work } from '../data/work';
 
     <ol class="entry-list">
       {projects.map((p) => {
-        const Tag = p.href ? 'a' : 'div';
+        const hasInlineLinks = !!p.blurbHtml;
+        const Tag = (p.href && !hasInlineLinks) ? 'a' : 'div';
         return (
           <li class="entry">
             <Tag
               class="entry__link entry__link--project"
-              href={p.href}
-              target={p.href ? '_blank' : undefined}
-              rel={p.href ? 'noopener noreferrer' : undefined}
+              href={!hasInlineLinks ? p.href : undefined}
+              target={!hasInlineLinks && p.href ? '_blank' : undefined}
+              rel={!hasInlineLinks && p.href ? 'noopener noreferrer' : undefined}
             >
               <div class="entry__body">
                 <div class="entry__head">
-                  <h3 class="entry__title">{p.title}</h3>
-                  <div class="entry__aside">
-                    <span class="entry__meta">{p.year}</span>
-                    {p.href && <span class="entry__arrow" aria-hidden="true">↗</span>}
-                  </div>
+                  {hasInlineLinks && p.href ? (
+                    <a class="entry__title-link" href={p.href} target="_blank" rel="noopener noreferrer">
+                      <h3 class="entry__title">{p.title}</h3>
+                      <span class="entry__arrow" aria-hidden="true">↗</span>
+                    </a>
+                  ) : (
+                    <>
+                      <h3 class="entry__title">{p.title}</h3>
+                      <div class="entry__aside">
+                        <span class="entry__meta">{p.year}</span>
+                        {p.href && <span class="entry__arrow" aria-hidden="true">↗</span>}
+                      </div>
+                    </>
+                  )}
+                  {hasInlineLinks && <div class="entry__aside"><span class="entry__meta">{p.year}</span></div>}
                 </div>
                 {p.blurbHtml
-                  ? <p class="entry__blurb" set:html={p.blurbHtml} />
+                  ? <p class="entry__blurb"><Fragment set:html={p.blurbHtml} /></p>
                   : <p class="entry__blurb">{p.blurb}</p>
                 }
               </div>
@@ -196,6 +207,17 @@ import { work } from '../data/work';
   .entry__link--project { padding-left: 0; }
   .entry__link:hover { color: var(--accent); }
   .entry__link:hover .entry__arrow { transform: translate(3px, -3px); color: var(--accent); }
+  .entry__title-link {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    background-image: none;
+    color: inherit;
+    transition: color 200ms ease;
+  }
+  .entry__title-link:hover { color: var(--accent); }
+  .entry__title-link:hover .entry__arrow { transform: translate(3px, -3px); color: var(--accent); }
+  .entry__blurb a { background-image: none; text-decoration: underline; }
 
   .entry__body { flex: 1; min-width: 0; }
   .entry__head {
