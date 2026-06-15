@@ -17,6 +17,13 @@ export const work: WorkEntry[] = [
     domain: 'key.com',
   },
   {
+    role: 'Founding Engineer',
+    org: 'Vantura',
+    period: '2025 — 2026',
+    domain: 'vantura.ai',
+    href: 'https://vantura.ai',
+  },
+  {
     role: 'Research Assistant',
     org: 'Case Western Reserve University',
     period: '2022 — 2026',
