@@ -15,7 +15,7 @@ export const projects: Project[] = [
     blurb:
       "A morning briefing app that turns the news, sports, and stocks you follow into a short audio podcast you can listen to on your way out the door. Backed by ElevenLabs, Founder University, and CWRU.",
     blurbHtml:
-      'A morning briefing app that turns the news, sports, and stocks you follow into a short audio podcast you can listen to on your way out the door. Backed by <a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">ElevenLabs</a>, <a href="https://founderuniversity.com" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">Founder University</a>, and CWRU.',
+      'A morning briefing app that turns the news, sports, and stocks you follow into a short audio podcast you can listen to on your way out the door. Backed by <a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">ElevenLabs</a>, <a href="https://founder.university/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">Founder University</a>, and CWRU.',
     tags: ['AI', 'Startup'],
     href: 'https://vantura.ai',
     blogPost: '/vantura',
