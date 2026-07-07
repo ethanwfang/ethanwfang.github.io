@@ -1,0 +1,187 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Replace with your actual YouTube video ID (the part after ?v= in the URL)
+const youtubeId = '65I2Y5r55YQ';
+---
+
+<Base title="Vantura — Ethan Fang" description="How we built Vantura: a hyper-personalized AI morning briefing.">
+  <article class="post container">
+    <a href="/" class="back-link">← Back</a>
+
+    <header class="post__header">
+      <h1 class="post__title">Vantura</h1>
+      <p class="post__subtitle">Building a hyper-personalized AI morning briefing from scratch</p>
+      <p class="post__meta">2026</p>
+    </header>
+
+    <div class="video-wrap">
+      <iframe
+        src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=1`}
+        title="Vantura demo video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <div class="post__body">
+      <h2>The idea</h2>
+      <p>
+        I used to tutor, and one day I found myself talking with the parents of my students about
+        their mornings. Most of them were slammed: getting ready for work, packing lunches, getting
+        kids out the door. If they had interests outside of their jobs, there was rarely time left
+        to keep up with any of it.
+      </p>
+      <p>
+        That conversation stuck with me. I kept thinking about what it would look like to hand
+        someone a briefing built just for them, something they could read over coffee or listen to
+        in the car, and walk away caught up on everything they cared about. Around the same time, a
+        few of us were watching the new apps built on top of the iMessage API, things like Poke and
+        Tomo, and it clicked that this could be the right home for the idea. If Vantura lived right
+        inside iMessage, it wouldn't feel like another app competing for your attention. It would
+        just feel like a text from someone who already knew what you cared about.
+      </p>
+
+      <h2>How it works</h2>
+      <p>
+        The first thing a new user does is go through onboarding (there's a clip of it in the video
+        above), where we learn what they actually want to follow: specific topics, sports teams,
+        stocks, whatever matters to them.
+      </p>
+      <p>
+        From there, we go pull the news. We use a mix of News APIs and other sources, along with
+        Grok, which we leaned on to search by topic. It wasn't the most efficient approach. We
+        hadn't built a clean filter yet to separate the useful articles from the noise in the News
+        API results, so in the beta we just let Grok do that work for us, and it held up well
+        enough.
+      </p>
+      <p>
+        Once we have a day's worth of material for someone, we turn it into a set of visual news
+        cards they can scroll through and react to right inside the thread, and a podcast style
+        script that gets sent over to ElevenLabs, which is what actually produces the audio briefing
+        that lands in their inbox each morning.
+      </p>
+
+      <h2>What we learned</h2>
+      <p>
+        The hardest part of all of this had nothing to do with news or audio. It was getting a
+        language model to behave. Model output is stochastic by nature, so pinning down something
+        consistent and safe enough to send to real people took a lot of trial and error. I spent a
+        long stretch deep in prompt engineering, fine tuning, and RAG before we found something that
+        worked: a loop with actual guardrails built in, regex checks plus an LLM acting as a judge
+        over its own output (we used DeepSeek for that since it was cheap). If something slipped
+        through wrong, the judge would catch it before a user ever saw it. Getting Vantura to call
+        the right tools at the right time was its own version of that same fight, since being right
+        most of the time isn't good enough when someone is trusting you with their morning.
+      </p>
+      <p>
+        The rest of what I learned had less to do with code and more to do with running something
+        like a business. The iMessage API we depended on wasn't cheap, and it showed up fast in our
+        burn rate. Asking people to pay for Vantura turned out to be its own challenge, since the
+        briefing alone didn't always feel like enough value to justify a subscription. We ended up
+        around a hundred users. I eventually stepped back from the day to day to go build other
+        things, but looking back, it was one of the more fun projects I've worked on.
+      </p>
+      <p>
+        Along the way we picked up some real signs that we were onto something. Founder University
+        accepted an earlier version of Vantura into their pre seed program, and even though the
+        product had changed a lot by the time we actually shipped, that early validation helped us
+        sharpen our pitch and get comfortable in investor conversations. ElevenLabs also gave us
+        about five thousand dollars in credits, which is really what made the daily podcast possible
+        in the first place.
+      </p>
+
+      <h2>What's next</h2>
+      <p>
+        These days I'm spending more time exploring agent harnesses, LangChain in particular, and
+        thinking about what a next version of something like Vantura could look like. Wherever it
+        goes from here, I'm glad I built it, and I hope it keeps finding its footing.
+      </p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post {
+    padding: 4rem 0 6rem;
+    width: min(100% - 2.5rem, 720px);
+    margin-inline: auto;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--muted);
+    background-image: none;
+    margin-bottom: 2.5rem;
+    transition: color 180ms ease;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .post__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .post__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-3);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0 0 0.5rem;
+  }
+
+  .post__subtitle {
+    font-size: var(--step-0);
+    color: var(--muted);
+    margin: 0 0 0.75rem;
+    max-width: 52ch;
+    line-height: 1.4;
+  }
+
+  .post__meta {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+  }
+
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    margin-bottom: 3rem;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--paper-2);
+  }
+  .video-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .post__body {
+    font-size: var(--step-0);
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  .post__body h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-1);
+    letter-spacing: -0.02em;
+    margin: 2.5rem 0 0.75rem;
+  }
+
+  .post__body p {
+    color: var(--muted);
+    max-width: 68ch;
+    margin: 0 0 1.1em;
+  }
+</style>

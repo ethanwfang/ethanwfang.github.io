@@ -34,7 +34,7 @@ import { work } from '../data/work';
         const external = w.href && w.href.startsWith('http');
         const Tag = w.href ? 'a' : 'div';
         return (
-          <li class="entry">
+          <li class="entry entry--work">
             <Tag
               class="entry__link"
               href={w.href}
@@ -49,7 +49,7 @@ import { work } from '../data/work';
                   </h3>
                   <div class="entry__aside">
                     <span class="entry__meta">{w.period}</span>
-                    {w.href && <span class="entry__arrow" aria-hidden="true">↗</span>}
+                    <span class={`entry__arrow${w.href ? '' : ' entry__arrow--hidden'}`} aria-hidden="true">↗</span>
                   </div>
                 </div>
               </div>
@@ -79,7 +79,7 @@ import { work } from '../data/work';
                   <h3 class="entry__title">{r.title}</h3>
                   <div class="entry__aside">
                     <span class="entry__meta">{r.year}</span>
-                    {r.href && <span class="entry__arrow" aria-hidden="true">↗</span>}
+                    <span class={`entry__arrow${r.href ? '' : ' entry__arrow--hidden'}`} aria-hidden="true">↗</span>
                   </div>
                 </div>
                 <p class="entry__blurb">{r.blurb}</p>
@@ -123,7 +123,7 @@ import { work } from '../data/work';
                       <h3 class="entry__title">{p.title}</h3>
                       <div class="entry__aside">
                         <span class="entry__meta">{p.year}</span>
-                        {p.href && <span class="entry__arrow" aria-hidden="true">↗</span>}
+                        <span class={`entry__arrow${p.href ? '' : ' entry__arrow--hidden'}`} aria-hidden="true">↗</span>
                       </div>
                     </>
                   )}
@@ -132,6 +132,9 @@ import { work } from '../data/work';
                   ? <p class="entry__blurb"><Fragment set:html={p.blurbHtml} /></p>
                   : <p class="entry__blurb">{p.blurb}</p>
                 }
+                {p.blogPost && (
+                  <a href={p.blogPost} class="entry__blog-btn">blog post ↗</a>
+                )}
               </div>
             </Tag>
           </li>
@@ -260,6 +263,14 @@ import { work } from '../data/work';
     transition: transform 250ms ease, color 200ms ease;
     display: inline-block;
   }
+  .entry__arrow--hidden { visibility: hidden; }
+
+  .entry--work .entry__title {
+    font-size: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   .entry__blurb {
     color: var(--muted);
@@ -267,6 +278,24 @@ import { work } from '../data/work';
     font-size: 0.8rem;
     line-height: 1.55;
     max-width: 72ch;
+  }
+
+  .entry__blog-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.55rem;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    color: var(--muted);
+    background-image: none;
+    transition: border-color 200ms ease, color 200ms ease;
+  }
+  .entry__blog-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   @media (max-width: 560px) {
