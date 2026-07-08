@@ -28,39 +28,40 @@ const youtubeId = '65I2Y5r55YQ';
     <div class="post__body">
       <h2>The idea</h2>
       <p>
-        I used to tutor, and one day I found myself talking with the parents of my students about
-        their mornings. Most of them were slammed: getting ready for work, packing lunches, getting
-        kids out the door. If they had interests outside of their jobs, there was rarely time left
-        to keep up with any of it.
+        I used to tutor, and one trend that I began to realize while talking with the parents of my students was that most of them
+        had super busy mornings, no time for anything else. Between getting ready for work, packing lunches, and getting
+        kids out the door, they rarely had time to keep up with the news and their own interests.
       </p>
       <p>
-        That conversation stuck with me. I kept thinking about what it would look like to hand
-        someone a briefing built just for them, something they could read over coffee or listen to
-        in the car, and walk away caught up on everything they cared about. Around the same time, a
-        few of us were watching the new apps built on top of the iMessage API, things like Poke and
-        Tomo, and it clicked that this could be the right home for the idea. If Vantura lived right
-        inside iMessage, it wouldn't feel like another app competing for your attention. It would
-        just feel like a text from someone who already knew what you cared about.
+        That conversation stuck with me, and I kept thinking about what it would look like to have an efficient tool
+        that could update you every morning, like an executive assistant. Something that isn't as distracting as social media,
+        or anxiety-inducing like the news, or ad-filled like the radio. Around the same time, I also began to pay attention to some new apps built on top of the iMessage API, things like Poke and
+        Tomo, and it clicked that this could be the right home for the idea. If we somehow had a personal assistant specifically for news and keeping up to date on information, that'd be really cool.
+        Additionally, with the amount of AI slop out there, I wanted the app to feel like a text from a friend updating you on what's been happening recently.
+      </p>
+      <p>
+        After some convincing, I convinced my cofounder to pivot into this idea, and as the technical guy, I began to build out the idea.
       </p>
 
       <h2>How it works</h2>
       <p>
         The first thing a new user does is go through onboarding (there's a clip of it in the video
         above), where we learn what they actually want to follow: specific topics, sports teams,
-        stocks, whatever matters to them.
+        stocks, etc.
       </p>
       <p>
         From there, we go pull the news. We use a mix of News APIs and other sources, along with
-        Grok, which we leaned on to search by topic. It wasn't the most efficient approach. We
+        Grok, which we leaned on to search by topic. It wasn't the most efficient approach, because the News APIs often produced junk. We
         hadn't built a clean filter yet to separate the useful articles from the noise in the News
         API results, so in the beta we just let Grok do that work for us, and it held up well
         enough.
       </p>
       <p>
-        Once we have a day's worth of material for someone, we turn it into a set of visual news
-        cards they can scroll through and react to right inside the thread, and a podcast style
+        Every morning at a specified time, we deliver custom news to each user through a set of visual news
+        cards they can scroll through and react to right inside the thread. We also deliver a podcast style
         script that gets sent over to ElevenLabs, which is what actually produces the audio briefing
-        that lands in their inbox each morning.
+        that lands in their inbox each morning. If the user has any follow up questions, they can ask Vantura, and 
+        it will reply with its knowledge base, or if prompted, will conduct a web search for the most recent information on what you're looking for.
       </p>
 
       <h2>What we learned</h2>
@@ -69,11 +70,10 @@ const youtubeId = '65I2Y5r55YQ';
         language model to behave. Model output is stochastic by nature, so pinning down something
         consistent and safe enough to send to real people took a lot of trial and error. I spent a
         long stretch deep in prompt engineering, fine tuning, and RAG before we found something that
-        worked: a loop with actual guardrails built in, regex checks plus an LLM acting as a judge
-        over its own output (we used DeepSeek for that since it was cheap). If something slipped
-        through wrong, the judge would catch it before a user ever saw it. Getting Vantura to call
+        worked: a loop with guardrails built in, regex checks plus an LLM acting as a judge
+        over its own output (we used DeepSeek for that since it was cheap). Getting Vantura to call
         the right tools at the right time was its own version of that same fight, since being right
-        most of the time isn't good enough when someone is trusting you with their morning.
+        *most* of the time isn't good enough when someone is trusting you with their morning.
       </p>
       <p>
         The rest of what I learned had less to do with code and more to do with running something
