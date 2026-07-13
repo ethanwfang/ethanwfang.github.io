@@ -6,6 +6,7 @@ export interface WorkEntry {
   domain?: string;
   mark?: string;
   href?: string;
+  blogPost?: string;
 }
 
 export const work: WorkEntry[] = [
@@ -22,6 +23,7 @@ export const work: WorkEntry[] = [
     period: '2025 — 2026',
     domain: 'vantura.ai',
     href: 'https://vantura.ai',
+    blogPost: '/vantura',
   },
   {
     role: 'Research Assistant',

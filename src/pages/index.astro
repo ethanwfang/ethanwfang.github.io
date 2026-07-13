@@ -32,26 +32,43 @@ import { work } from '../data/work';
     <ol class="entry-list">
       {work.map((w) => {
         const external = w.href && w.href.startsWith('http');
-        const Tag = w.href ? 'a' : 'div';
+        const hasBlogPost = !!w.blogPost;
+        const Tag = w.href && !hasBlogPost ? 'a' : 'div';
         return (
           <li class="entry entry--work">
             <Tag
               class="entry__link"
-              href={w.href}
-              target={external ? '_blank' : undefined}
-              rel={external ? 'noopener noreferrer' : undefined}
+              href={!hasBlogPost ? w.href : undefined}
+              target={!hasBlogPost && external ? '_blank' : undefined}
+              rel={!hasBlogPost && external ? 'noopener noreferrer' : undefined}
             >
               <Logo domain={w.domain} mark={w.mark} alt={w.org} />
               <div class="entry__body">
                 <div class="entry__head">
-                  <h3 class="entry__title">
-                    {w.org}<span class="entry__sep"> · </span><span class="entry__sub">{w.role}</span>
-                  </h3>
+                  {hasBlogPost && w.href ? (
+                    <a
+                      class="entry__title-link"
+                      href={w.href}
+                      target={external ? '_blank' : undefined}
+                      rel={external ? 'noopener noreferrer' : undefined}
+                    >
+                      <h3 class="entry__title">
+                        {w.org}<span class="entry__sep"> · </span><span class="entry__sub">{w.role}</span>
+                      </h3>
+                    </a>
+                  ) : (
+                    <h3 class="entry__title">
+                      {w.org}<span class="entry__sep"> · </span><span class="entry__sub">{w.role}</span>
+                    </h3>
+                  )}
                   <div class="entry__aside">
                     <span class="entry__meta">{w.period}</span>
                     <span class={`entry__arrow${w.href ? '' : ' entry__arrow--hidden'}`} aria-hidden="true">↗</span>
                   </div>
                 </div>
+                {w.blogPost && (
+                  <a href={w.blogPost} class="entry__blog-btn">blog post ↗</a>
+                )}
               </div>
             </Tag>
           </li>

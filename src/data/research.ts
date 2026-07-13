@@ -11,7 +11,7 @@ export const research: ResearchEntry[] = [
     title: 'Perpetual Text Generation',
     year: '2025',
     blurb:
-      'Research on extending LLM generation past the natural stopping point. Introduces a method that detects emergent EOS tokens, backsteps, and applies dynamic temperature adjustment — doubled for exploration, then annealed back to baseline. Pushes Llama2-7B-chat ~1,000 additional coherent tokens past where it would otherwise halt.',
+      'Used dynamic temperature adjustments to try to push language models past their natural stopping point — detecting emergent EOS tokens, backstepping, and annealing the temperature back to baseline to keep generation coherent.',
     tags: ['LLMs', 'Decoding', 'Research'],
     href: 'https://d2jud02ci9yv69.cloudfront.net/2025-04-28-perpetual-text-129/blog/perpetual-text/',
   },
@@ -19,7 +19,7 @@ export const research: ResearchEntry[] = [
     title: 'Q-Learned CNN Branch Selection',
     year: '2024',
     blurb:
-      'Reinforcement-learning agent that dynamically selects convolutional branches at inference time, trading FLOPs for accuracy on a per-sample basis. Trained with Q-learning over a branching CNN backbone.',
+      'Used a Q-learned agent to dynamically select the best convolutional branches in a CNN at inference time, trading FLOPs for accuracy on a per-sample basis.',
     tags: ['Reinforcement Learning', 'CNNs', 'Efficiency'],
   },
 ];
