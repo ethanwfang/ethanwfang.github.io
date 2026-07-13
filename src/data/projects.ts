@@ -13,7 +13,7 @@ export const projects: Project[] = [
     title: 'iLiterate',
     year: '2026',
     blurb:
-      "As a second-generation immigrant, I speak Mandarin but struggle to read it fluently. I built iLiterate to help other second-generation immigrants develop reading skills in their native language — lessons, flashcards, and a speed reader, built on Next.js and Supabase with OpenAI, Gemini, and ElevenLabs.",
+      "As a second generation immigrant, I speak my native language (Mandarin) but struggle to read fluently. I built iLiterate as an easy way for other second gen immigrants to develop their reading skills.",
     tags: ['Next.js', 'Supabase', 'LLMs'],
     href: 'https://iliterate.org',
   },
