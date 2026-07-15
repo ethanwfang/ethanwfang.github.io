@@ -16,10 +16,10 @@ export const research: ResearchEntry[] = [
     href: 'https://d2jud02ci9yv69.cloudfront.net/2025-04-28-perpetual-text-129/blog/perpetual-text/',
   },
   {
-    title: 'Q-Learned CNN Branch Selection',
+    title: 'Dynamic Branching',
     year: '2024',
     blurb:
-      'Used a Q-learned agent to select the best branches in CNNs.',
+      'Trained a Q-learned agent to select the best branches in CNNs.',
     tags: ['Reinforcement Learning', 'CNNs', 'Efficiency'],
   },
 ];
