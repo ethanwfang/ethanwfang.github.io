@@ -6,6 +6,7 @@ export interface Project {
   href?: string;
   year: string;
   blogPost?: string;
+  demoVideo?: string;
 }
 
 export const projects: Project[] = [
@@ -16,6 +17,7 @@ export const projects: Project[] = [
       "As a second generation immigrant, I speak my native language (Mandarin) but struggle to read fluently. I built iLiterate as an easy way for other second gen immigrants to develop their reading skills.",
     tags: ['Next.js', 'Supabase', 'LLMs'],
     href: 'https://iliterate.org',
+    demoVideo: 'https://www.youtube.com/watch?v=vsknqVU_fII',
   },
   {
     title: 'XRDimage',

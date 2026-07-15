@@ -113,7 +113,7 @@ import { work } from '../data/work';
 
     <ol class="entry-list">
       {projects.map((p) => {
-        const hasInlineLinks = !!p.blurbHtml;
+        const hasInlineLinks = !!p.blurbHtml || !!p.demoVideo;
         const Tag = (p.href && !hasInlineLinks) ? 'a' : 'div';
         return (
           <li class="entry">
@@ -151,6 +151,9 @@ import { work } from '../data/work';
                 }
                 {p.blogPost && (
                   <a href={p.blogPost} class="entry__blog-btn">blog post ↗</a>
+                )}
+                {p.demoVideo && (
+                  <a href={p.demoVideo} target="_blank" rel="noopener noreferrer" class="entry__blog-btn">demo ↗</a>
                 )}
               </div>
             </Tag>
