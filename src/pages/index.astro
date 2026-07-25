@@ -24,6 +24,16 @@ import { work } from '../data/work';
     </div>
   </section>
 
+  <section class="previously container">
+    <div class="previously__inner">
+      <h2 class="previously__title">Previously</h2>
+      <p class="previously__body">
+        I was a nationally ranked junior tennis player, and a California All-State violinist for 6 consecutive years.
+        I still <a href="/tennis">coach</a> occasionally, and try to help out in my community to bring the joy of the sport to others.
+      </p>
+    </div>
+  </section>
+
   <section class="page container">
     <header class="page__head">
       <h2 class="page__title">Work</h2>
@@ -202,7 +212,29 @@ import { work } from '../data/work';
   .bio p { margin: 0 0 0.8em; }
   .bio p:last-child { margin-bottom: 0; }
 
-  .page { padding: 4rem 0; font-size: 0.8rem; width: min(100% - 2.5rem, 640px); margin-inline: auto; }
+  .previously { padding: 0; }
+  .previously__inner {
+    width: min(100% - 2.5rem, 640px);
+    margin-inline: auto;
+  }
+  .previously__title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--step-0);
+    letter-spacing: -0.02em;
+    margin: 0 0 0.6rem;
+  }
+  .previously__body {
+    font-size: var(--step-0);
+    line-height: 1.55;
+    max-width: 56ch;
+    color: var(--ink);
+    margin: 0;
+  }
+  .previously__body a { background-image: none; text-decoration: underline; }
+
+  .page { padding: 2rem 0 4rem; font-size: 0.8rem; width: min(100% - 2.5rem, 640px); margin-inline: auto; }
   .page__head { margin: 0 0 1.5rem; max-width: 60ch; }
   .page__head--secondary { margin-top: 3rem; }
   .page__title {
