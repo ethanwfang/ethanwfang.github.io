@@ -34,10 +34,13 @@ import { work } from '../data/work';
   </section>
 
   <section class="page container">
-    <header class="page__head">
-      <h2 class="page__title">Work</h2>
-    </header>
+    <div class="tabs" role="tablist" aria-label="Sections">
+      <button class="tab is-active" role="tab" type="button" id="tab-work" aria-controls="panel-work" aria-selected="true" data-tab="work">Work</button>
+      <button class="tab" role="tab" type="button" id="tab-research" aria-controls="panel-research" aria-selected="false" tabindex="-1" data-tab="research">Research</button>
+      <button class="tab" role="tab" type="button" id="tab-projects" aria-controls="panel-projects" aria-selected="false" tabindex="-1" data-tab="projects">Projects</button>
+    </div>
 
+    <div class="panel" id="panel-work" role="tabpanel" aria-labelledby="tab-work" data-panel="work">
     <ol class="entry-list">
       {work.map((w) => {
         const external = w.href && w.href.startsWith('http');
@@ -85,10 +88,9 @@ import { work } from '../data/work';
       })}
     </ol>
 
-    <header class="page__head page__head--secondary">
-      <h2 class="page__title">Research</h2>
-    </header>
+    </div>
 
+    <div class="panel" id="panel-research" role="tabpanel" aria-labelledby="tab-research" data-panel="research" hidden>
     <ol class="entry-list">
       {research.map((r) => {
         const Tag = r.href ? 'a' : 'div';
@@ -116,10 +118,9 @@ import { work } from '../data/work';
       })}
     </ol>
 
-    <header class="page__head page__head--secondary">
-      <h2 class="page__title">Projects</h2>
-    </header>
+    </div>
 
+    <div class="panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" data-panel="projects" hidden>
     <ol class="entry-list">
       {projects.map((p) => {
         const hasInlineLinks = !!p.blurbHtml || !!p.demoVideo;
@@ -170,6 +171,7 @@ import { work } from '../data/work';
         );
       })}
     </ol>
+    </div>
   </section>
 </Base>
 
@@ -234,15 +236,56 @@ import { work } from '../data/work';
   .previously__body a { background-image: none; text-decoration: underline; }
 
   .page { padding: 2rem 0 4rem; font-size: 0.8rem; width: min(100% - 2.5rem, 640px); margin-inline: auto; }
-  .page__head { margin: 0 0 1.5rem; max-width: 60ch; }
-  .page__head--secondary { margin-top: 3rem; }
-  .page__title {
+
+  .tabs {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin: 0 0 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tab {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0 0 0.6rem;
+    margin: 0;
+    cursor: pointer;
     font-family: var(--font-display);
     font-weight: 400;
     font-size: var(--step-1);
     line-height: 1.05;
     letter-spacing: -0.02em;
-    margin: 0;
+    color: var(--muted);
+    position: relative;
+    transition: color 200ms ease;
+  }
+  .tab::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 250ms ease;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab.is-active { color: var(--ink); }
+  .tab.is-active::after { transform: scaleX(1); }
+  .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .panel[hidden] { display: none; }
+  .panel { animation: panel-in 220ms ease both; }
+  @keyframes panel-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .panel { animation: none; }
+    .tab::after { transition: none; }
   }
 
   .entry-list {
@@ -353,3 +396,40 @@ import { work } from '../data/work';
     .entry__head { flex-wrap: wrap; gap: 0.3rem 1rem; }
   }
 </style>
+
+<script>
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.tab'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('.panel'));
+
+  function select(name: string, focus = false) {
+    tabs.forEach((tab) => {
+      const active = tab.dataset.tab === name;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+      if (active && focus) tab.focus();
+    });
+    panels.forEach((panel) => {
+      panel.hidden = panel.dataset.panel !== name;
+    });
+    history.replaceState(null, '', name === 'work' ? location.pathname : `#${name}`);
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => select(tab.dataset.tab!));
+    tab.addEventListener('keydown', (e) => {
+      const i = tabs.indexOf(tab);
+      let next = -1;
+      if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+      if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+      if (e.key === 'Home') next = 0;
+      if (e.key === 'End') next = tabs.length - 1;
+      if (next < 0) return;
+      e.preventDefault();
+      select(tabs[next].dataset.tab!, true);
+    });
+  });
+
+  const initial = location.hash.slice(1);
+  if (tabs.some((t) => t.dataset.tab === initial)) select(initial);
+</script>

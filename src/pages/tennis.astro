@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Ethan Fang, Tennis Coach" description="Ethan Fang's tennis history — competitive junior player, private coach, and CWRU Club Tennis.">
+  <article class="post container">
+    <a href="/" class="back-link">← Back</a>
+
+    <header class="post__header">
+      <h1 class="post__title">Ethan Fang, Tennis Coach</h1>
+    </header>
+
+    <div class="post__body">
+      <p>
+        I played competitive junior tennis from 2015 to 2021. I reached a peak Universal Tennis Rating (UTR) of 10,
+        competed in numerous Super Nationals Level 1 tournaments, and represented Team Northern California in Zonals.
+        In high school I finished 2nd in the state in individual doubles, playing alongside my best friend. Along the
+        way I was sponsored by Adidas, Babolat, and Solinco.
+      </p>
+      <p>
+        After that I spent 2021 and 2022 coaching privately, working with students who ranged from complete beginners
+        to college players. I served as both a hitting partner and a coach, depending on what the student needed.
+      </p>
+      <p>
+        At Case Western from 2022 to 2026, I helped grow club tennis from 20 members to 120 and secured a sponsorship
+        with Celinka. Practices got popular enough that sign-ups would sell out in under 9 seconds, and we set record
+        numbers for membership and tournament attendance every year I was there.
+      </p>
+      <p>
+        I still coach occasionally. If you want to hit or need a coach, reach out.
+      </p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post {
+    padding: 4rem 0 6rem;
+    width: min(100% - 2.5rem, 720px);
+    margin-inline: auto;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--muted);
+    background-image: none;
+    margin-bottom: 2.5rem;
+    transition: color 180ms ease;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .post__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .post__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-3);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0 0 0.5rem;
+  }
+
+  .post__body {
+    font-size: var(--step-0);
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  .post__body p {
+    color: var(--muted);
+    max-width: 68ch;
+    margin: 0 0 1.1em;
+  }
+  .post__body p:last-child { margin-bottom: 0; }
+
+</style>

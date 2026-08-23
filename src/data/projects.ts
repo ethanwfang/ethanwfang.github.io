@@ -11,6 +11,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: 'Vantura',
+    year: '2026',
+    blurb:
+      'Hyper-personalized AI morning briefing delivered over iMessage — custom news cards plus a daily audio digest.',
+    tags: ['LLMs', 'LangChain', 'ElevenLabs'],
+    href: 'https://vantura.ai',
+    demoVideo: 'https://www.youtube.com/watch?v=65I2Y5r55YQ',
+  },
+  {
     title: 'iLiterate',
     year: '2026',
     blurb:
