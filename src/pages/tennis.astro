@@ -1,10 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import '../styles/post.css';
 ---
 
 <Base title="Ethan Fang, Tennis Coach" description="Coaching players in the East Bay.">
-  <article class="post container">
-    <a href="/" class="back-link">← Back</a>
+  <article class="post">
+    <a href="/" class="back-link">&#8592; back</a>
 
     <header class="post__header">
       <h1 class="post__title">Tennis</h1>
@@ -32,48 +33,3 @@ import Base from '../layouts/Base.astro';
     </div>
   </article>
 </Base>
-
-<style>
-  .post {
-    padding: 4rem 0 6rem;
-    width: min(100% - 2.5rem, 720px);
-    margin-inline: auto;
-  }
-
-  .back-link {
-    display: inline-block;
-    font-size: 0.8rem;
-    color: var(--muted);
-    background-image: none;
-    margin-bottom: 2.5rem;
-    transition: color 180ms ease;
-  }
-  .back-link:hover { color: var(--accent); }
-
-  .post__header {
-    margin-bottom: 2.5rem;
-  }
-
-  .post__title {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--step-3);
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-    margin: 0 0 0.5rem;
-  }
-
-  .post__body {
-    font-size: var(--step-0);
-    line-height: 1.7;
-    color: var(--ink);
-  }
-
-  .post__body p {
-    color: var(--muted);
-    max-width: 68ch;
-    margin: 0 0 1.1em;
-  }
-  .post__body p:last-child { margin-bottom: 0; }
-
-</style>

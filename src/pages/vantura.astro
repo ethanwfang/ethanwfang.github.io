@@ -1,13 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
+import '../styles/post.css';
 
 // Replace with your actual YouTube video ID (the part after ?v= in the URL)
 const youtubeId = '65I2Y5r55YQ';
 ---
 
 <Base title="Vantura — Ethan Fang" description="How we built Vantura: a hyper-personalized AI morning briefing.">
-  <article class="post container">
-    <a href="/" class="back-link">← Back</a>
+  <article class="post">
+    <a href="/" class="back-link">&#8592; back</a>
 
     <header class="post__header">
       <h1 class="post__title">Vantura</h1>
@@ -98,87 +99,3 @@ const youtubeId = '65I2Y5r55YQ';
     </div>
   </article>
 </Base>
-
-<style>
-  .post {
-    padding: 4rem 0 6rem;
-    width: min(100% - 2.5rem, 720px);
-    margin-inline: auto;
-  }
-
-  .back-link {
-    display: inline-block;
-    font-size: 0.8rem;
-    color: var(--muted);
-    background-image: none;
-    margin-bottom: 2.5rem;
-    transition: color 180ms ease;
-  }
-  .back-link:hover { color: var(--accent); }
-
-  .post__header {
-    margin-bottom: 2.5rem;
-  }
-
-  .post__title {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--step-3);
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-    margin: 0 0 0.5rem;
-  }
-
-  .post__subtitle {
-    font-size: var(--step-0);
-    color: var(--muted);
-    margin: 0 0 0.75rem;
-    max-width: 52ch;
-    line-height: 1.4;
-  }
-
-  .post__meta {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-variant-numeric: tabular-nums;
-    margin: 0;
-  }
-
-  .video-wrap {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;
-    margin-bottom: 3rem;
-    border-radius: 6px;
-    overflow: hidden;
-    background: var(--paper-2);
-  }
-  .video-wrap iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-
-  .post__body {
-    font-size: var(--step-0);
-    line-height: 1.7;
-    color: var(--ink);
-  }
-
-  .post__body h2 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--step-1);
-    letter-spacing: -0.02em;
-    margin: 2.5rem 0 0.75rem;
-  }
-
-  .post__body p {
-    color: var(--muted);
-    max-width: 68ch;
-    margin: 0 0 1.1em;
-  }
-</style>

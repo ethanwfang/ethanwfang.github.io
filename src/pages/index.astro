@@ -8,45 +8,40 @@ import { work } from '../data/work';
 ---
 
 <Base title="Ethan Fang">
-  <section class="hero">
-    <div class="hero__inner">
-      <img
-        src="/calligraphy.png"
-        alt="Chinese name"
-        class="chop"
-      />
-      <h1 class="name">Ethan Fang</h1>
-      <div class="bio">
-        <p>Based out of the Bay Area. I spend most of my time in math modeling, AI research, and engineering.</p>
-        <p>I graduated in 4 years from Case Western Reserve University in May 2026 with a dual BS/MS degree in computer science. During my time there, I cofounded the quant finance club, grew the tennis club to record participation, and did lots of research.</p>
-        <p>Currently, I am a Software Engineer at Fluency, where we are building a work ontology to automate processes in enterprise companies. Previously, I was a quantitative analyst at KeyBank for 1.5 years, where I worked on statistically-backed sequential feature selection, distributed computing, and backtesting for the modeling codebase used by the quants at the bank.</p>
-        <figure class="snapshot">
-          <picture>
-            <source srcset="/yc.webp" type="image/webp" />
-            <img
-              src="/yc.jpg"
-              alt="Ethan Fang standing beside a large orange Y Combinator sign in San Francisco"
-              width="1400"
-              height="1457"
-              loading="lazy"
-              decoding="async"
-              class="snapshot__img"
-            />
-          </picture>
-          <figcaption class="snapshot__caption">YC Startup School 2026</figcaption>
-        </figure>
-        <p>I am passionate about researching and building technologies that create meaningful real-world impact. My interests include sustainability, human-centered AI, and athletic performance. In my free time, I read about game theory, do research on differential equations, and teach tennis to competitive juniors in my hometown.</p>
-      </div>
+  <section class="hero container">
+    <img src="/calligraphy.png" alt="Chinese name" class="chop" />
+    <h1 class="name">ethan fang</h1>
+    <p class="tagline">bay area &middot; math modeling, ai research, engineering</p>
+
+    <div class="bio">
+      <p>I graduated in 4 years from Case Western Reserve University in May 2026 with a dual BS/MS degree in computer science. During my time there, I cofounded the quant finance club, grew the tennis club to record participation, and did lots of research.</p>
+      <p>Currently, I am a Software Engineer at Fluency, where we are building a work ontology to automate processes in enterprise companies. Previously, I was a quantitative analyst at KeyBank for 1.5 years, where I worked on statistically-backed sequential feature selection, distributed computing, and backtesting for the modeling codebase used by the quants at the bank.</p>
+
+      <figure class="snapshot box">
+        <picture>
+          <source srcset="/yc.webp" type="image/webp" />
+          <img
+            src="/yc.jpg"
+            alt="Ethan Fang standing beside a large orange Y Combinator sign in San Francisco"
+            width="1400"
+            height="1457"
+            loading="lazy"
+            decoding="async"
+            class="snapshot__img"
+          />
+        </picture>
+        <figcaption class="snapshot__caption">YC Startup School 2026</figcaption>
+      </figure>
+
+      <p>I am passionate about researching and building technologies that create meaningful real-world impact. My interests include sustainability, human-centered AI, and athletic performance. In my free time, I read about game theory, do research on differential equations, and teach tennis to competitive juniors in my hometown.</p>
     </div>
   </section>
 
   <section class="previously container">
-    <div class="previously__inner">
-      <h2 class="previously__title">Previously</h2>
-      <p class="previously__body">
-        I was a nationally ranked junior tennis player, and a California All-State violinist for 6 consecutive years.
-      </p>
-    </div>
+    <h2 class="label">previously</h2>
+    <p class="previously__body">
+      I was a nationally ranked junior tennis player, and a California All-State violinist for 6 consecutive years.
+    </p>
   </section>
 
   <section class="page container">
@@ -58,7 +53,7 @@ import { work } from '../data/work';
     </div>
 
     <div class="panel" id="panel-work" role="tabpanel" aria-labelledby="tab-work" data-panel="work">
-    <ol class="entry-list">
+    <ol class="entry-list box">
       {work.map((w) => {
         const external = w.href && w.href.startsWith('http');
         const hasBlogPost = !!w.blogPost;
@@ -108,7 +103,7 @@ import { work } from '../data/work';
     </div>
 
     <div class="panel" id="panel-research" role="tabpanel" aria-labelledby="tab-research" data-panel="research" hidden>
-    <ol class="entry-list">
+    <ol class="entry-list box">
       {research.map((r) => {
         const Tag = r.href ? 'a' : 'div';
         return (
@@ -138,7 +133,7 @@ import { work } from '../data/work';
     </div>
 
     <div class="panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" data-panel="projects" hidden>
-    <ol class="entry-list">
+    <ol class="entry-list box">
       {projects.map((p) => {
         const hasInlineLinks = !!p.blurbHtml || !!p.demoVideo;
         const Tag = (p.href && !hasInlineLinks) ? 'a' : 'div';
@@ -226,330 +221,291 @@ import { work } from '../data/work';
 </Base>
 
 <style>
+  /* ---- hero ---------------------------------------------------------- */
   .hero {
-    padding: 6rem 0 2rem;
-  }
-  .hero__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    gap: 1.25rem;
-    width: min(100% - 2.5rem, 640px);
-    margin-inline: auto;
+    padding: 4rem 0 3rem;
+    max-width: 720px;
   }
   .chop {
-    width: clamp(220px, 60%, 420px);
+    width: clamp(160px, 40%, 260px);
     height: auto;
-    opacity: 0.95;
-    filter: drop-shadow(0 10px 30px color-mix(in srgb, var(--accent) 22%, transparent));
+    display: block;
+    margin-bottom: 1.5rem;
     mix-blend-mode: multiply;
   }
   .name {
-    font-family: var(--font-display);
-    font-weight: 400;
     font-size: var(--step-3);
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-    margin: 0;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+  }
+  .tagline {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--muted-ink);
+    margin: 0.5rem 0 2rem;
   }
   .bio {
-    margin-top: 0.5rem;
-    font-size: var(--step-0);
-    line-height: 1.55;
-    max-width: 56ch;
-    color: var(--ink);
+    line-height: 1.65;
   }
-  .bio p { margin: 0 0 0.8em; }
-  .bio p:last-child { margin-bottom: 0; }
-
-  .previously { padding: 0; }
-  .previously__inner {
-    width: min(100% - 2.5rem, 640px);
-    margin-inline: auto;
+  .bio p {
+    margin-bottom: 1.1em;
   }
-  .previously__title {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
-    font-size: var(--step-0);
-    letter-spacing: -0.02em;
-    margin: 0 0 0.6rem;
-  }
-  .previously__body {
-    font-size: var(--step-0);
-    line-height: 1.55;
-    max-width: 56ch;
-    color: var(--ink);
-    margin: 0;
-  }
-  .previously__body a { background-image: none; text-decoration: underline; }
 
   .snapshot {
-    margin: 1.6rem auto;
-    text-align: center;
+    margin: 2rem 0 2.25rem;
+    padding: 0;
+    width: min(100%, 420px);
   }
   .snapshot__img {
     display: block;
-    width: clamp(160px, 42%, 260px);
+    width: 100%;
     height: auto;
-    margin-inline: auto;
-    border-radius: 2px;
-    filter: drop-shadow(0 10px 30px color-mix(in srgb, var(--accent) 14%, transparent));
   }
   .snapshot__caption {
-    margin: 0.6rem 0 0;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 0.75rem;
-    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-ink);
+    padding: 0.5rem 0.75rem;
+    border-top: 1px solid var(--rule);
+    background: var(--paper-2);
   }
 
-  .page { padding: 2rem 0 4rem; font-size: 0.8rem; width: min(100% - 2.5rem, 640px); margin-inline: auto; }
+  /* ---- previously ---------------------------------------------------- */
+  .previously {
+    padding-bottom: 3rem;
+    max-width: 720px;
+  }
+  .previously__body {
+    margin: 1rem 0 0;
+    color: var(--muted-ink);
+  }
 
+  /* ---- tabs ---------------------------------------------------------- */
+  .page {
+    padding-bottom: 2rem;
+  }
   .tabs {
     display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
-    margin: 0 0 1.5rem;
-    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+    gap: 0;
+    border: 1px solid var(--ink);
+    border-bottom: 0;
+    width: fit-content;
+    max-width: 100%;
   }
   .tab {
-    appearance: none;
-    background: none;
-    border: 0;
-    padding: 0 0 0.6rem;
-    margin: 0;
-    cursor: pointer;
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--step-1);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--muted);
-    position: relative;
-    transition: color 200ms ease;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    text-transform: lowercase;
+    color: var(--muted-ink);
+    padding: 0.5rem 1rem;
+    border-right: 1px solid var(--rule);
+    transition: background-color 120ms ease, color 120ms ease;
   }
-  .tab::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    height: 1px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 250ms ease;
+  .tab:last-child {
+    border-right: 0;
   }
-  .tab:hover { color: var(--ink); }
-  .tab.is-active { color: var(--ink); }
-  .tab.is-active::after { transform: scaleX(1); }
-  .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-
-  .panel[hidden] { display: none; }
-  .panel { animation: panel-in 220ms ease both; }
-  @keyframes panel-in {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: none; }
+  .tab:hover {
+    color: var(--ink);
+    background: var(--paper-2);
   }
-  @media (prefers-reduced-motion: reduce) {
-    .panel { animation: none; }
-    .tab::after { transition: none; }
+  .tab.is-active {
+    color: hsl(var(--accent-foreground));
+    background: hsl(var(--accent));
   }
 
+  /* ---- entry rows ---------------------------------------------------- */
   .entry-list {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+  }
+  .entry + .entry {
     border-top: 1px solid var(--rule);
   }
-  .entry { border-bottom: 1px solid var(--rule); }
   .entry__link {
     display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    padding: 1rem 0;
-    background-image: none;
-    color: var(--ink);
-    transition: color 200ms ease;
+    gap: 0.875rem;
+    align-items: flex-start;
+    padding: 1rem;
+    border-bottom: 0;
+    transition: background-color 120ms ease;
   }
-  .entry__link--project { align-items: flex-start; }
-  .entry__link--project { padding-left: 0; }
-  .entry__link:hover { color: var(--accent); }
-  .entry__link:hover .entry__arrow { transform: translate(3px, -3px); color: var(--accent); }
-  .entry__title-link {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    background-image: none;
+  a.entry__link:hover {
+    background: var(--paper-2);
     color: inherit;
-    transition: color 200ms ease;
   }
-  .entry__title-link:hover { color: var(--accent); }
-  .entry__title-link:hover .entry__arrow { transform: translate(3px, -3px); color: var(--accent); }
-  .entry__blurb a { background-image: none; text-decoration: underline; }
-
-  .entry__body { flex: 1; min-width: 0; }
+  .entry__body {
+    flex: 1;
+    min-width: 0;
+  }
   .entry__head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 1.25rem;
+    gap: 1rem;
   }
-  .entry__link--project .entry__head { margin-bottom: 0.2rem; }
   .entry__title {
-    font-family: var(--font-display);
-    font-weight: 400;
     font-size: var(--step-0);
-    letter-spacing: -0.01em;
-    margin: 0;
-    line-height: 1.3;
-    min-width: 0;
+    font-weight: 600;
+    text-transform: none;
+    overflow-wrap: anywhere;
   }
-  .entry__sep { color: var(--muted); font-style: italic; }
-  .entry__sub { color: var(--muted); font-style: italic; }
-
+  .entry__sep,
+  .entry__sub {
+    font-weight: 400;
+    color: var(--muted-ink);
+  }
+  .entry__title-link {
+    border-bottom: 0;
+  }
+  .entry__title-link:hover {
+    background: none;
+    color: hsl(var(--accent-foreground));
+  }
   .entry__aside {
-    display: inline-flex;
+    display: flex;
     align-items: baseline;
-    gap: 0.7rem;
+    gap: 0.5rem;
     flex-shrink: 0;
-    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--muted-ink);
   }
   .entry__meta {
-    font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
-  .entry__arrow {
-    font-size: 0.9rem;
-    transition: transform 250ms ease, color 200ms ease;
-    display: inline-block;
+  .entry__arrow--hidden {
+    visibility: hidden;
   }
-  .entry__arrow--hidden { visibility: hidden; }
-
-  .entry--work .entry__title {
-    font-size: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  a.entry__link:hover .entry__arrow,
+  .entry__title-link:hover + .entry__aside .entry__arrow {
+    color: hsl(var(--accent-foreground));
   }
-
   .entry__blurb {
-    color: var(--muted);
-    margin: 0.2rem 0 0;
-    font-size: 0.8rem;
-    line-height: 1.55;
-    max-width: 72ch;
+    margin: 0.375rem 0 0;
+    font-size: var(--step--1);
+    line-height: 1.6;
+    color: var(--muted-ink);
+    max-width: var(--measure);
   }
-
   .entry__blog-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    margin-top: 0.55rem;
-    font-size: 0.7rem;
-    padding: 0.2rem 0.6rem;
+    display: inline-block;
+    margin: 0.625rem 0.5rem 0 0;
+    padding: 0.1875rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.04em;
+    color: var(--muted-ink);
     border: 1px solid var(--rule);
-    border-radius: 100px;
-    color: var(--muted);
-    background-image: none;
-    transition: border-color 200ms ease, color 200ms ease;
   }
   .entry__blog-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    color: hsl(var(--accent-foreground));
+    background: hsl(var(--selection));
+    border-color: hsl(var(--accent-foreground));
   }
 
+  /* ---- gallery ------------------------------------------------------- */
   .grid {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.4rem;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
   }
   .grid__cell--empty {
-    aspect-ratio: 1;
-    border: 1px solid var(--rule);
-    border-radius: 2px;
-    background: color-mix(in srgb, var(--paper-2) 60%, transparent);
+    aspect-ratio: 4 / 3;
+    border: 1px dashed var(--rule);
+    background-image: url('/dotted.svg');
+    opacity: 0.25;
   }
   .grid__btn {
-    appearance: none;
     display: block;
-    width: 100%;
     padding: 0;
-    border: 0;
-    background: none;
-    cursor: zoom-in;
-    border-radius: 2px;
-    overflow: hidden;
+    width: 100%;
+    border: 1px solid var(--ink);
+    background: var(--paper);
   }
-  .grid__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .grid__img {
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 1;
-    object-fit: cover;
-    transition: opacity 200ms ease, transform 300ms ease;
-  }
-  .grid__btn:hover .grid__img { opacity: 0.86; transform: scale(1.02); }
-
-  .lightbox {
-    border: 0;
-    padding: 0;
-    max-width: 100vw;
-    max-height: 100vh;
-    width: 100%;
     height: 100%;
-    background: transparent;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
   }
-  .lightbox[open] { display: flex; }
-  .lightbox::backdrop { background: color-mix(in srgb, #14110d 88%, transparent); }
+  .grid__btn:hover .grid__img {
+    opacity: 0.85;
+  }
+
+  /* ---- lightbox ------------------------------------------------------ */
+  .lightbox {
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    padding: 0;
+    max-width: min(92vw, 1000px);
+    max-height: 90vh;
+  }
+  .lightbox::backdrop {
+    background: hsl(var(--foreground) / 0.6);
+    backdrop-filter: blur(3px);
+  }
   .lightbox__img {
-    max-width: min(92vw, 1100px);
-    max-height: 88vh;
-    width: auto;
-    height: auto;
+    display: block;
+    max-width: 100%;
+    max-height: 90vh;
     object-fit: contain;
-    border-radius: 2px;
   }
   .lightbox__close,
   .lightbox__nav {
-    appearance: none;
-    background: none;
-    border: 0;
-    padding: 0.25rem 0.6rem;
-    cursor: pointer;
-    color: #f7f3ec;
-    opacity: 0.7;
-    line-height: 1;
-    transition: opacity 180ms ease;
-  }
-  .lightbox__close:hover,
-  .lightbox__nav:hover { opacity: 1; }
-  .lightbox__close {
     position: absolute;
-    top: 0.75rem;
-    right: 1rem;
-    font-size: 2rem;
+    font-family: var(--font-mono);
+    line-height: 1;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    width: 2rem;
+    height: 2rem;
   }
-  .lightbox__nav { font-size: 2.5rem; }
-  .lightbox__nav[hidden] { visibility: hidden; display: block; }
-
-  @media (max-width: 560px) {
-    .lightbox__nav { font-size: 2rem; padding: 0.25rem 0.2rem; }
+  .lightbox__close {
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.125rem;
+  }
+  .lightbox__nav {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+  }
+  .lightbox__nav--prev { left: 0.5rem; }
+  .lightbox__nav--next { right: 0.5rem; }
+  .lightbox__close:hover,
+  .lightbox__nav:hover {
+    color: hsl(var(--accent-foreground));
+    background: hsl(var(--accent));
   }
 
-  @media (max-width: 560px) {
-    .entry__head { flex-wrap: wrap; gap: 0.3rem 1rem; }
+  @media (max-width: 36rem) {
+    .entry__head {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .entry__link {
+      padding: 0.875rem;
+    }
+    .tabs {
+      width: 100%;
+    }
+    .tab {
+      flex: 1 1 0;
+      min-width: 0;
+      text-align: center;
+      font-size: var(--step--2);
+      padding-inline: 0.25rem;
+    }
   }
 </style>
 

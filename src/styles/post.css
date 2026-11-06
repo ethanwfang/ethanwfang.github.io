@@ -1,0 +1,89 @@
+/* Shared article styling for the long-form pages. */
+
+.post {
+  padding: 3rem 0 5rem;
+  width: min(100% - 2rem, 720px);
+  margin-inline: auto;
+}
+
+.back-link {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted-ink);
+  border-bottom: 1px solid transparent;
+  margin-bottom: 2.5rem;
+}
+
+.back-link:hover {
+  color: hsl(var(--accent-foreground));
+  background: hsl(var(--selection));
+  border-bottom-color: hsl(var(--accent-foreground));
+}
+
+.post__header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.post__title {
+  font-size: var(--step-3);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  margin: 0 0 0.5rem;
+}
+
+.post__subtitle {
+  font-size: var(--step-0);
+  color: var(--muted-ink);
+  margin: 0 0 0.75rem;
+  max-width: 52ch;
+  line-height: 1.5;
+}
+
+.post__meta {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted-ink);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+
+.post__body {
+  font-size: var(--step-0);
+  line-height: 1.7;
+}
+
+.post__body h2 {
+  font-size: var(--step-1);
+  font-weight: 600;
+  margin: 2.5rem 0 0.75rem;
+}
+
+.post__body p {
+  color: var(--muted-ink);
+  max-width: var(--measure);
+  margin: 0 0 1.1em;
+}
+
+.post__body p:last-child {
+  margin-bottom: 0;
+}
+
+.video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 3rem;
+  border: 1px solid var(--ink);
+  background: var(--paper-2);
+}
+
+.video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

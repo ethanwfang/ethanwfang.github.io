@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
@@ -16,10 +17,12 @@ const { title, description = 'Ethan Fang — ML researcher and backend engineer.
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#f8fafc" />
     <title>{title}</title>
     <link rel="icon" type="image/png" href="/calligraphy.png" />
   </head>
   <body>
+    <Nav />
     <main>
       <slot />
     </main>
