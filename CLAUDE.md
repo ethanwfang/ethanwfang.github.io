@@ -21,8 +21,8 @@ Other scripts: `npm run build` (static output to `dist/`), `npm run preview` (se
 
 - `src/pages/index.astro` — the home route. Hero (calligraphy + name), a Previously note, then Work / Research / Projects / Gallery tab panels rendered from typed data files.
 - `src/pages/tennis.astro`, `src/pages/vantura.astro` — long-form pages. Both import `src/styles/post.css`; neither carries its own `<style>` block.
-- `src/layouts/Base.astro` — shared `<html>` shell. Imports `src/styles/global.css`, renders `Nav`, a `<slot />`, then `Footer`.
-- `src/components/` — `Nav`, `Footer`, `Logo`.
+- `src/layouts/Base.astro` — shared `<html>` shell. Imports `src/styles/global.css`, renders a `<slot />`, then `Footer`.
+- `src/components/` — `Footer`, `Logo`.
 - `src/data/` — typed content arrays (`projects.ts`, `research.ts`, `work.ts`, `gallery.ts`) consumed by `index.astro`.
 - `public/calligraphy.png` — served verbatim at `/calligraphy.png` (used as both favicon and hero image).
 - `public/dotted.svg` — the 7x13 dot tile behind every `.box`.

@@ -11,14 +11,14 @@ import { work } from '../data/work';
   <section class="hero container">
     <img src="/calligraphy.png" alt="Chinese name" class="chop" />
     <h1 class="name">ethan fang</h1>
-    <p class="tagline">bay area &middot; math modeling, ai research, engineering</p>
 
     <div class="bio">
       <p>I graduated in 4 years from Case Western Reserve University in May 2026 with a dual BS/MS degree in computer science. During my time there, I cofounded the quant finance club, grew the tennis club to record participation, and did lots of research.</p>
       <p>Currently, I am a Software Engineer at Fluency, where we are building a work ontology to automate processes in enterprise companies. Previously, I was a quantitative analyst at KeyBank for 1.5 years, where I worked on statistically-backed sequential feature selection, distributed computing, and backtesting for the modeling codebase used by the quants at the bank.</p>
 
-      <figure class="snapshot box">
-        <picture>
+      <div class="media-row">
+        <figure class="snapshot box">
+          <picture>
           <source srcset="/yc.webp" type="image/webp" />
           <img
             src="/yc.jpg"
@@ -30,10 +30,26 @@ import { work } from '../data/work';
             class="snapshot__img"
           />
         </picture>
-        <figcaption class="snapshot__caption">YC Startup School 2026</figcaption>
+        <figcaption class="panel-caption">YC Startup School 2026</figcaption>
       </figure>
 
-      <p>I am passionate about researching and building technologies that create meaningful real-world impact. My interests include sustainability, human-centered AI, and athletic performance. In my free time, I read about game theory, do research on differential equations, and teach tennis to competitive juniors in my hometown.</p>
+        <figure class="sprite box">
+          <img
+            src="/naruto.gif"
+            alt="Animated pixel art sprite of Naruto cloaked in red chakra"
+            width="300"
+            height="300"
+            loading="lazy"
+            decoding="async"
+            class="sprite__img"
+          />
+          <figcaption class="sprite__credit">
+            <a href="https://www.deviantart.com/narudraw312/art/Naruto-Sprite-animation-1-106687063" target="_blank" rel="noopener noreferrer">Naruto Sprite animation 1 &mdash; narudraw312<span aria-hidden="true"> &#8599;</span></a>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p>I am passionate about researching and building technologies that create meaningful real-world impact. My interests include sustainability, human-centered AI, and athletic performance.</p>
     </div>
   </section>
 
@@ -238,30 +254,33 @@ import { work } from '../data/work';
     font-weight: 600;
     letter-spacing: -0.04em;
   }
-  .tagline {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    color: var(--muted-ink);
-    margin: 0.5rem 0 2rem;
-  }
   .bio {
+    margin-top: 2rem;
     line-height: 1.65;
   }
   .bio p {
     margin-bottom: 1.1em;
   }
 
-  .snapshot {
+  .media-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1.25rem;
     margin: 2rem 0 2.25rem;
+  }
+  .snapshot {
+    margin: 0;
     padding: 0;
-    width: min(100%, 420px);
+    flex: 1 1 260px;
+    max-width: 420px;
   }
   .snapshot__img {
     display: block;
     width: 100%;
     height: auto;
   }
-  .snapshot__caption {
+  .panel-caption {
     font-family: var(--font-mono);
     font-size: var(--step--2);
     letter-spacing: 0.08em;
@@ -273,6 +292,48 @@ import { work } from '../data/work';
   }
 
   /* ---- previously ---------------------------------------------------- */
+  .sprite {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    flex: 0 0 auto;
+    width: 132px;
+  }
+  /* the credit stays out of the way until the sprite is hovered or focused */
+  .sprite__credit {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    width: max-content;
+    max-width: 230px;
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    line-height: 1.4;
+    color: var(--muted-ink);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 140ms ease;
+  }
+  .sprite:hover .sprite__credit,
+  .sprite:focus-within .sprite__credit {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sprite__credit a {
+    color: inherit;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sprite__credit a:hover {
+    color: hsl(var(--accent-foreground));
+    background: hsl(var(--selection));
+    border-bottom-color: hsl(var(--accent-foreground));
+  }
+  .sprite__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   .previously {
     padding-bottom: 3rem;
     max-width: 720px;

@@ -11,16 +11,22 @@ export interface WorkEntry {
 
 export const work: WorkEntry[] = [
   {
+    role: 'Engineering',
+    org: 'Fluency',
+    period: 'Present',
+    domain: 'usefluency.com',
+  },
+  {
     role: 'Lead Quantitative Analytics Associate',
     org: 'KeyBank',
-    period: '2026 — Present',
+    period: '2026',
     location: 'Cleveland, OH',
     domain: 'key.com',
   },
   {
     role: 'Founding Engineer',
     org: 'Vantura',
-    period: '2025 — 2026',
+    period: '2025',
     domain: 'vantura.ai',
     href: 'https://vantura.ai',
   },
@@ -35,7 +41,7 @@ export const work: WorkEntry[] = [
   {
     role: 'Growth',
     org: 'Clarity',
-    period: '2025 — 2026',
+    period: '2025',
     domain: 'clarity-markets.com',
     href: 'https://www.clarity-markets.com/',
   },
