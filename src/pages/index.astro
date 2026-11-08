@@ -33,7 +33,7 @@ import { work } from '../data/work';
         <figcaption class="panel-caption">YC Startup School 2026</figcaption>
       </figure>
 
-        <figure class="sprite box">
+        <figure class="sprite">
           <img
             src="/naruto.gif"
             alt="Animated pixel art sprite of Naruto cloaked in red chakra"
@@ -243,14 +243,14 @@ import { work } from '../data/work';
     max-width: 720px;
   }
   .chop {
-    width: clamp(160px, 40%, 260px);
+    width: clamp(180px, 45%, 300px);
     height: auto;
     display: block;
     margin-bottom: 1.5rem;
     mix-blend-mode: multiply;
   }
   .name {
-    font-size: var(--step-3);
+    font-size: clamp(2.125rem, 1.7rem + 2.1vw, 3.125rem);
     font-weight: 600;
     letter-spacing: -0.04em;
   }
@@ -346,6 +346,7 @@ import { work } from '../data/work';
   /* ---- tabs ---------------------------------------------------------- */
   .page {
     padding-bottom: 2rem;
+    max-width: 720px;
   }
   .tabs {
     display: flex;
@@ -432,7 +433,7 @@ import { work } from '../data/work';
     gap: 0.5rem;
     flex-shrink: 0;
     font-family: var(--font-mono);
-    font-size: var(--step--1);
+    font-size: var(--step-0);
     color: var(--muted-ink);
   }
   .entry__meta {
@@ -448,8 +449,8 @@ import { work } from '../data/work';
   }
   .entry__blurb {
     margin: 0.375rem 0 0;
-    font-size: var(--step--1);
-    line-height: 1.6;
+    font-size: var(--step-0);
+    line-height: 1.65;
     color: var(--muted-ink);
     max-width: var(--measure);
   }
